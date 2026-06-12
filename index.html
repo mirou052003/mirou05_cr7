@@ -663,7 +663,7 @@ input:focus,textarea:focus{outline:none;border-color:var(--gold2);background:rgb
           <div class="club-header-years">2003 — الآن</div>
           <div class="club-header-stats">
             <div class="ch-stat"><div class="ch-stat-num">218+</div><div class="ch-stat-lbl">مباراة</div></div>
-            <div class="ch-stat"><div class="ch-stat-num">140+</div><div class="ch-stat-lbl">هدف</div></div>
+            <div class="ch-stat"><div class="ch-stat-num">130+</div><div class="ch-stat-lbl">هدف</div></div>
             <div class="ch-stat"><div class="ch-stat-num">أكثر</div><div class="ch-stat-lbl">هداف دولي تاريخي</div></div>
           </div>
         </div>
@@ -686,7 +686,7 @@ input:focus,textarea:focus{outline:none;border-color:var(--gold2);background:rgb
         <div class="trophy-card">
           <div class="trophy-icon">📊</div>
           <div class="trophy-name">أكثر هداف دولي في التاريخ</div>
-          <div class="trophy-year">140+ هدف</div>
+          <div class="trophy-year">130+ هدف</div>
           <div class="trophy-contrib">تجاوز رقم علي دائي الإيراني ليصبح الأول. كل هدف دولي جديد يزيد الفارق.</div>
           <span class="trophy-tag gold">رقم قياسي عالمي</span>
         </div>
@@ -753,7 +753,7 @@ input:focus,textarea:focus{outline:none;border-color:var(--gold2);background:rgb
     <div class="award-panel" id="panel-topscorer">
       <div class="ach-grid reveal">
         <div class="ach-card"><div class="ach-icon">⚽</div><div class="ach-num">900+</div><div class="ach-label">هدف محترف</div><div class="ach-sub">الأول في تاريخ كرة القدم الاحترافية</div></div>
-        <div class="ach-card"><div class="ach-icon">🌍</div><div class="ach-num">140+</div><div class="ach-label">هدف دولي</div><div class="ach-sub">الأول تاريخياً — تجاوز رقم علي دائي الإيراني</div></div>
+        <div class="ach-card"><div class="ach-icon">🌍</div><div class="ach-num">130+</div><div class="ach-label">هدف دولي</div><div class="ach-sub">الأول تاريخياً — تجاوز رقم علي دائي الإيراني</div></div>
         <div class="ach-card"><div class="ach-icon">🏆</div><div class="ach-num">140+</div><div class="ach-label">هدف دوري الأبطال</div><div class="ach-sub">الهداف التاريخي في أعرق البطولات الأوروبية</div></div>
         <div class="ach-card"><div class="ach-icon">🥇</div><div class="ach-num">450</div><div class="ach-label">هدف مع ريال مدريد</div><div class="ach-sub">أكثر هداف في تاريخ ريال مدريد</div></div>
         <div class="ach-card"><div class="ach-icon">🔴</div><div class="ach-num">145</div><div class="ach-label">هدف مع مانشستر يونايتد</div><div class="ach-sub">في كلا الفترتين مجتمعتين</div></div>
@@ -857,6 +857,8 @@ input:focus,textarea:focus{outline:none;border-color:var(--gold2);background:rgb
       <button class="adm-tab" onclick="admTab('atab-ticker',this)">📢 Ticker</button>
       <button class="adm-tab" onclick="admTab('atab-gallery',this)">📸 معرض</button>
       <button class="adm-tab" onclick="admTab('atab-quote',this)">💬 اقتباس</button>
+      <button class="adm-tab" onclick="admTab('atab-awards',this)">🌟 جوائز فردية</button>
+      <button class="adm-tab" onclick="admTab('atab-clubs',this)">🏆 أندية</button>
     </div>
 
     <div class="adm-tc active" id="atab-hero">
@@ -955,6 +957,59 @@ input:focus,textarea:focus{outline:none;border-color:var(--gold2);background:rgb
       </div>
     </div>
 
+    <!-- ===== INDIVIDUAL AWARDS ADMIN ===== -->
+    <div class="adm-tc" id="atab-awards">
+      <div class="adm-card">
+        <div class="adm-card-title">🌟 إدارة الجوائز الفردية</div>
+        <div id="awardsAdmin"></div>
+        <div style="margin-top:14px;border-top:1px solid rgba(255,255,255,.07);padding-top:14px">
+          <div style="font-size:11px;font-weight:700;color:var(--gold2);margin-bottom:8px">➕ إضافة جائزة فردية</div>
+          <div class="two-col">
+            <div><label>القسم</label>
+              <select id="naw-category" style="direction:rtl">
+                <option value="ballondor">🌟 الكرة الذهبية</option>
+                <option value="goldenshoe">👟 الحذاء الذهبي</option>
+                <option value="bestplayer">🎖️ أفضل لاعب FIFA</option>
+                <option value="topscorer">⚽ هداف التاريخ</option>
+              </select>
+            </div>
+            <div><label>الإيموجي / الأيقونة</label><input type="text" id="naw-icon" placeholder="🌟" maxlength="4"></div>
+          </div>
+          <div class="two-col">
+            <div><label>السنة / الرقم</label><input type="text" id="naw-year" placeholder="2008"></div>
+            <div><label>النادي / السياق</label><input type="text" id="naw-club" placeholder="ريال مدريد"></div>
+          </div>
+          <label>التفاصيل / الوصف</label><input type="text" id="naw-detail" placeholder="42 هدف في الموسم">
+          <label>رابط صورة الجائزة (اختياري)</label>
+          <input type="text" id="naw-img" placeholder="https://...">
+          <div id="naw-img-preview" style="margin-top:6px;display:none">
+            <img id="naw-preview-el" src="" style="width:80px;height:80px;object-fit:cover;border-radius:8px;border:1px solid rgba(255,215,0,.2)">
+          </div>
+          <button class="btn-gold" style="margin-top:10px" onclick="addAward()">➕ إضافة الجائزة</button>
+        </div>
+        <button class="btn-gold" style="margin-top:10px;background:linear-gradient(135deg,#C8102E,#8B0000);color:#fff" onclick="saveAwards()">💾 حفظ الجوائز الفردية</button>
+      </div>
+    </div>
+
+    <!-- ===== CLUBS ADMIN ===== -->
+    <div class="adm-tc" id="atab-clubs">
+      <div class="adm-card">
+        <div class="adm-card-title">🏆 إدارة الأندية والبطولات</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.4);margin-bottom:10px">اختر النادي لتعديل بياناته وبطولاته</div>
+        <select id="club-select" style="margin-bottom:12px;direction:rtl" onchange="renderClubAdmin()">
+          <option value="sporting">🟢 سبورتنج لشبونة</option>
+          <option value="mufc">🔴 مانشستر يونايتد (2003)</option>
+          <option value="real">⚪ ريال مدريد</option>
+          <option value="juve">⚫ يوفنتوس</option>
+          <option value="mufc2">🔴 مانشستر يونايتد (2021)</option>
+          <option value="alnassr">🟡 النصر السعودي</option>
+          <option value="portugal">🇵🇹 المنتخب البرتغالي</option>
+        </select>
+        <div id="clubAdminPanel"></div>
+        <button class="btn-gold" style="margin-top:12px;background:linear-gradient(135deg,#C8102E,#8B0000);color:#fff" onclick="saveClubs()">💾 حفظ بيانات الأندية</button>
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -1028,6 +1083,72 @@ const DEF = {
     {url:'https://images.unsplash.com/photo-1535571584817-6965a4e1fcac?w=600&q=80',label:'الجماهير 🙌',big:false},
   ],
   quote:'أنا لا أساعد الفرق على الفوز —\nأنا أُعلّم الفرق كيف تفوز',
+  individualAwards:{
+    ballondor:[
+      {icon:'🌟',year:'2008',club:'مانشستر يونايتد',detail:'42 هدف في الموسم',img:''},
+      {icon:'🌟',year:'2013',club:'ريال مدريد',detail:'55 هدف في الموسم',img:''},
+      {icon:'🌟',year:'2014',club:'ريال مدريد',detail:'La Décima UCL',img:''},
+      {icon:'🌟',year:'2016',club:'ريال مدريد + البرتغال',detail:'UCL + EURO 2016',img:''},
+      {icon:'🌟',year:'2017',club:'ريال مدريد',detail:'UCL + الليغا',img:''},
+    ],
+    goldenshoe:[
+      {icon:'👟',year:'2008',club:'الدوري الإنجليزي — مانشستر يونايتد',detail:'31 هدف 🥅',img:''},
+      {icon:'👟',year:'2011',club:'الدوري الإسباني — ريال مدريد',detail:'40 هدف 🥅',img:''},
+      {icon:'👟',year:'2014',club:'الدوري الإسباني — ريال مدريد',detail:'31 هدف 🥅',img:''},
+      {icon:'👟',year:'2015',club:'الدوري الإسباني — ريال مدريد',detail:'48 هدف 🥅',img:''},
+    ],
+    bestplayer:[
+      {icon:'🎖️',year:'2008',club:'مانشستر يونايتد',detail:'أول جائزة أفضل لاعب في العالم من FIFA.',img:''},
+      {icon:'🎖️',year:'2016',club:'ريال مدريد',detail:'بعد EURO 2016 ودوري أبطال أوروبا.',img:''},
+      {icon:'🎖️',year:'2017',club:'ريال مدريد',detail:'موسم استثنائي مع ريال مدريد.',img:''},
+    ],
+    topscorer:[
+      {icon:'⚽',year:'900+',club:'هدف محترف',detail:'الأول في تاريخ كرة القدم الاحترافية',img:''},
+      {icon:'🌍',year:'130+',club:'هدف دولي',detail:'الأول تاريخياً — تجاوز رقم علي دائي الإيراني',img:''},
+      {icon:'🏆',year:'140+',club:'هدف دوري الأبطال',detail:'الهداف التاريخي في أعرق البطولات الأوروبية',img:''},
+    ],
+  },
+  clubsData:{
+    sporting:{name:'سبورتنج لشبونة',years:'2001 — 2003 • البرتغال',emoji:'🟢',flagImg:'',matches:'31',goals:'5',assists:'0',
+      trophies:[{icon:'⚽',name:'بداية الاحتراف',year:'2001-03',contrib:'مشوار أدهش مانشستر يونايتد في مباراة ودية.',tag:'البداية',tagGold:false}]},
+    mufc:{name:'مانشستر يونايتد',years:'2003 — 2009 • إنجلترا',emoji:'🔴',flagImg:'',matches:'292',goals:'118',assists:'62',
+      trophies:[
+        {icon:'🏆',name:'دوري أبطال أوروبا',year:'2008',contrib:'سجّل في النهائي ضد تشيلسي. أول دوري أبطال له.',tag:'UCL',tagGold:true},
+        {icon:'🥇',name:'الدوري الإنجليزي',year:'2007',contrib:'أول لقب في الليغ الإنجليزي.',tag:'Premier League',tagGold:true},
+        {icon:'🥇',name:'الدوري الإنجليزي',year:'2008',contrib:'لقب ثانٍ في الدوري الإنجليزي.',tag:'Premier League',tagGold:true},
+        {icon:'🥇',name:'الدوري الإنجليزي',year:'2009',contrib:'لقب ثالث في الدوري الإنجليزي.',tag:'Premier League',tagGold:true},
+      ]},
+    real:{name:'ريال مدريد',years:'2009 — 2018 • إسبانيا',emoji:'⚪',flagImg:'',matches:'438',goals:'450',assists:'131',
+      trophies:[
+        {icon:'🏆',name:'دوري أبطال أوروبا — La Décima',year:'2014',contrib:'17 هدفاً في البطولة.',tag:'La Décima',tagGold:true},
+        {icon:'🏆',name:'دوري أبطال أوروبا',year:'2016',contrib:'16 هدفاً. نهائي ميلان.',tag:'UCL',tagGold:true},
+        {icon:'🏆',name:'دوري أبطال أوروبا',year:'2017',contrib:'12 هدفاً. نهائي كارديف.',tag:'UCL',tagGold:true},
+        {icon:'🏆',name:'دوري أبطال أوروبا',year:'2018',contrib:'15 هدفاً. نهائي كييف.',tag:'UCL',tagGold:true},
+        {icon:'🥇',name:'الدوري الإسباني',year:'2012',contrib:'50 هدفاً في الدوري.',tag:'La Liga',tagGold:true},
+        {icon:'🥇',name:'الدوري الإسباني',year:'2017',contrib:'25 هدفاً في الدوري.',tag:'La Liga',tagGold:false},
+      ]},
+    juve:{name:'يوفنتوس',years:'2018 — 2021 • إيطاليا',emoji:'⚫',flagImg:'',matches:'134',goals:'101',assists:'22',
+      trophies:[
+        {icon:'🥇',name:'الدوري الإيطالي Serie A',year:'2019',contrib:'21 هدفاً في أول موسم.',tag:'2018-19',tagGold:false},
+        {icon:'🥇',name:'الدوري الإيطالي Serie A',year:'2020',contrib:'31 هدفاً — هداف الدوري.',tag:'هداف الدوري',tagGold:true},
+        {icon:'🏅',name:'كأس إيطاليا Coppa Italia',year:'2021',contrib:'مساهمة محورية.',tag:'Coppa Italia',tagGold:false},
+      ]},
+    mufc2:{name:'مانشستر يونايتد — العودة',years:'2021 — 2022 • إنجلترا',emoji:'🔴',flagImg:'',matches:'54',goals:'27',assists:'3',
+      trophies:[
+        {icon:'⚽',name:'موسم استثنائي بشكل فردي',year:'2021-22',contrib:'24 هدفاً في موسمه الأول.',tag:'أفضل هداف',tagGold:false},
+      ]},
+    alnassr:{name:'النصر السعودي',years:'2023 — الآن • السعودية',emoji:'🟡',flagImg:'',matches:'90+',goals:'85+',assists:'20+',
+      trophies:[
+        {icon:'🥇',name:'دوري روشن للمحترفين',year:'2025',contrib:'أول لقب دوري محلي مع النصر.',tag:'🏆 أول لقب',tagGold:true},
+        {icon:'📈',name:'هداف الدوري السعودي',year:'2024',contrib:'35 هدفاً — رقم تاريخي.',tag:'35 هدف',tagGold:true},
+      ]},
+    portugal:{name:'المنتخب البرتغالي',years:'2003 — الآن',emoji:'🇵🇹',flagImg:'',matches:'218+',goals:'130+',assists:'',
+      trophies:[
+        {icon:'🏆',name:'بطولة أمم أوروبا EURO',year:'2016',contrib:'قاد البرتغال للقب الأول.',tag:'EURO 2016',tagGold:true},
+        {icon:'🏅',name:'دوري الأمم الأوروبية',year:'2019',contrib:'هاتريك في نصف النهائي.',tag:'UEFA Nations League',tagGold:true},
+        {icon:'📊',name:'أكثر هداف دولي في التاريخ',year:'130+ هدف',contrib:'تجاوز رقم علي دائي.',tag:'رقم قياسي عالمي',tagGold:true},
+      ]},
+  },
   timeline:[
     {year:'1985',club:'الميلاد',detail:'وُلد في فونشال، مدييرا، البرتغال. نشأ في أسرة متواضعة.',badge:'البداية'},
     {year:'1997',club:'الأكاديمية — سبورتنج لشبونة',detail:'التحق بأكاديمية النادي. كُشف عن قلبه المصاب مبكراً وعُولج.',badge:'الأكاديمية'},
@@ -1156,6 +1277,107 @@ function renderAll(){
   // Quote
   document.getElementById('quoteText').innerHTML=(D.quote||'').replace(/\n/g,'<br>');
 
+  // Individual Awards (ballondor panel from data)
+  if(D.individualAwards){
+    const iaw = D.individualAwards;
+    // Ballon d'Or
+    if(iaw.ballondor && document.getElementById('panel-ballondor')){
+      const grid = document.querySelector('#panel-ballondor .bd-grid');
+      if(grid) grid.innerHTML = iaw.ballondor.map(aw =>
+        `<div class="bd-card">` +
+        (aw.img ? `<img src="${aw.img}" style="width:56px;height:56px;object-fit:contain;border-radius:8px;margin-bottom:8px;display:block;margin-left:auto;margin-right:auto" onerror="this.style.display='none'">` : `<span class="bd-trophy">${aw.icon||'🌟'}</span>`) +
+        `<div class="bd-year">${aw.year||''}</div><div class="bd-club">${aw.club||''}</div><div class="bd-detail">${aw.detail||''}</div></div>`
+      ).join('');
+    }
+    // Golden Shoe
+    if(iaw.goldenshoe && document.getElementById('panel-goldenshoe')){
+      const grid = document.querySelector('#panel-goldenshoe .shoes-grid');
+      if(grid) grid.innerHTML = iaw.goldenshoe.map(aw =>
+        `<div class="shoe-card">` +
+        (aw.img ? `<img src="${aw.img}" style="width:50px;height:50px;object-fit:contain;border-radius:7px;margin-bottom:6px;display:block" onerror="this.style.display='none'">` : `<div style="font-size:28px;margin-bottom:6px">${aw.icon||'👟'}</div>`) +
+        `<div class="shoe-year">${aw.year||''}</div><div class="shoe-goals">${aw.detail||''}</div><div class="shoe-league">${aw.club||''}</div></div>`
+      ).join('');
+    }
+    // Best Player FIFA
+    if(iaw.bestplayer && document.getElementById('panel-bestplayer')){
+      const grid = document.querySelector('#panel-bestplayer .trophies-grid');
+      if(grid) grid.innerHTML = iaw.bestplayer.map(aw =>
+        `<div class="trophy-card">` +
+        (aw.img ? `<img src="${aw.img}" style="width:50px;height:50px;object-fit:contain;border-radius:7px;margin-bottom:8px;display:block" onerror="this.style.display='none'">` : `<div class="trophy-icon">${aw.icon||'🎖️'}</div>`) +
+        `<div class="trophy-name">FIFA Best Player</div><div class="trophy-year">${aw.year||''}</div><div class="trophy-contrib">${aw.detail||''}</div></div>`
+      ).join('');
+    }
+    // Top Scorer
+    if(iaw.topscorer && document.getElementById('panel-topscorer')){
+      const grid = document.querySelector('#panel-topscorer .ach-grid');
+      if(grid) grid.innerHTML = iaw.topscorer.map(aw =>
+        `<div class="ach-card">` +
+        (aw.img ? `<img src="${aw.img}" style="width:44px;height:44px;object-fit:contain;border-radius:7px;margin-bottom:6px;display:block" onerror="this.style.display='none'">` : `<div class="ach-icon">${aw.icon||'⚽'}</div>`) +
+        `<div class="ach-num">${aw.year||''}</div><div class="ach-label">${aw.club||''}</div><div class="ach-sub">${aw.detail||''}</div></div>`
+      ).join('');
+    }
+  }
+
+  // Clubs data — update headers and trophies from clubsData if present
+  if(D.clubsData){
+    const clubKeys = ['sporting','mufc','real','juve','mufc2','alnassr','portugal'];
+    clubKeys.forEach(key => {
+      const cl = D.clubsData[key];
+      if(!cl) return;
+      const panel = document.getElementById('panel-'+key);
+      if(!panel) return;
+      // Update header
+      const headerEmoji = panel.querySelector('.club-header-emoji');
+      const headerName = panel.querySelector('.club-header-name');
+      const headerYears = panel.querySelector('.club-header-years');
+      const headerStats = panel.querySelector('.club-header-stats');
+      if(headerEmoji){
+        if(cl.flagImg){
+          headerEmoji.innerHTML = `<img src="${cl.flagImg}" style="width:52px;height:52px;object-fit:contain;border-radius:10px" onerror="this.parentNode.textContent='${cl.emoji||'🏆'}'">`;
+        } else {
+          headerEmoji.textContent = cl.emoji || '';
+        }
+      }
+      if(headerName) headerName.textContent = cl.name||'';
+      if(headerYears) headerYears.textContent = cl.years||'';
+      if(headerStats && (cl.matches||cl.goals||cl.assists)){
+        headerStats.innerHTML =
+          (cl.matches ? `<div class="ch-stat"><div class="ch-stat-num">${cl.matches}</div><div class="ch-stat-lbl">مباراة</div></div>` : '') +
+          (cl.goals ? `<div class="ch-stat"><div class="ch-stat-num">${cl.goals}</div><div class="ch-stat-lbl">هدف</div></div>` : '') +
+          (cl.assists ? `<div class="ch-stat"><div class="ch-stat-num">${cl.assists}</div><div class="ch-stat-lbl">تمريرة</div></div>` : '');
+      }
+      // Update trophies grid if data has trophies
+      if(cl.trophies && cl.trophies.length > 0){
+        const grid = panel.querySelector('.trophies-grid');
+        if(grid) grid.innerHTML = cl.trophies.map(tr =>
+          `<div class="trophy-card"><div class="trophy-icon">${tr.icon||'🏆'}</div>` +
+          `<div class="trophy-name">${tr.name||''}</div>` +
+          `<div class="trophy-year">${tr.year||''}</div>` +
+          `<div class="trophy-contrib">${tr.contrib||''}</div>` +
+          (tr.tag ? `<span class="trophy-tag${tr.tagGold?' gold':''}">${tr.tag}</span>` : '') +
+          `</div>`
+        ).join('');
+      }
+      // Update clubs nav button
+      const navBtns = document.querySelectorAll('.club-btn');
+      navBtns.forEach(btn => {
+        const onclick = btn.getAttribute('onclick')||'';
+        if(onclick.includes("'"+key+"'")){
+          const emojiEl = btn.querySelector('.cb-emoji');
+          const yearsEl = btn.querySelector('.cb-years');
+          if(emojiEl){
+            if(cl.flagImg){
+              emojiEl.innerHTML = `<img src="${cl.flagImg}" style="width:22px;height:22px;object-fit:contain;border-radius:4px" onerror="this.parentNode.textContent='${cl.emoji||''}'">`;
+            } else {
+              emojiEl.textContent = cl.emoji||'';
+            }
+          }
+          if(yearsEl && cl.years) yearsEl.textContent = cl.years;
+        }
+      });
+    });
+  }
+
   // Re-observe
   setTimeout(()=>document.querySelectorAll('.reveal').forEach(el=>obs.observe(el)),60);
 }
@@ -1237,6 +1459,8 @@ function admTab(id,btn){
   document.querySelectorAll('.adm-tc').forEach(t=>t.classList.remove('active'));
   document.querySelectorAll('.adm-tab').forEach(b=>b.classList.remove('active'));
   document.getElementById(id).classList.add('active');btn.classList.add('active');
+  if(id==='atab-awards') renderAwardsAdmin();
+  if(id==='atab-clubs') renderClubAdmin();
 }
 
 // =============================================
@@ -1354,6 +1578,176 @@ function addGal(){
   document.getElementById('ng-url').value='';document.getElementById('ng-label').value='';
   document.getElementById('ng-big').checked=false;
   renderAdminForms();toast('✅ تمت إضافة الصورة');
+}
+
+// =============================================
+// INDIVIDUAL AWARDS ADMIN
+// =============================================
+function renderAwardsAdmin(){
+  const iaw = D.individualAwards || {};
+  const cats = ['ballondor','goldenshoe','bestplayer','topscorer'];
+  const catNames = {ballondor:'🌟 الكرة الذهبية',goldenshoe:'👟 الحذاء الذهبي',bestplayer:'🎖️ أفضل لاعب FIFA',topscorer:'⚽ هداف التاريخ'};
+  const el = document.getElementById('awardsAdmin');
+  if(!el) return;
+  el.innerHTML = cats.map(cat => {
+    const items = iaw[cat] || [];
+    return '<div style="margin-bottom:14px">' +
+      '<div style="font-size:11px;font-weight:700;color:var(--gold2);margin-bottom:6px;padding:6px 10px;background:rgba(255,215,0,.07);border-radius:7px">' + catNames[cat] + '</div>' +
+      items.map((aw,i) =>
+        '<div class="item-row">' +
+        (aw.img ? '<img src="' + aw.img + '" style="width:44px;height:44px;object-fit:cover;border-radius:7px;flex-shrink:0" onerror="this.style.display=\'none\'">' :
+          '<div style="width:44px;height:44px;background:rgba(255,215,0,.07);border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0">' + (aw.icon||'🏅') + '</div>') +
+        '<div class="item-info">' +
+          '<div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-bottom:4px">' +
+            '<input type="text" value="' + (aw.icon||'') + '" onchange="D.individualAwards[\'' + cat + '\'][' + i + '].icon=this.value;renderAwardsAdmin()" placeholder="إيموجي">' +
+            '<input type="text" value="' + (aw.year||'') + '" onchange="D.individualAwards[\'' + cat + '\'][' + i + '].year=this.value" placeholder="السنة">' +
+          '</div>' +
+          '<input type="text" value="' + (aw.club||'').replace(/"/g,'&quot;') + '" onchange="D.individualAwards[\'' + cat + '\'][' + i + '].club=this.value" placeholder="النادي" style="margin-bottom:4px">' +
+          '<input type="text" value="' + (aw.detail||'').replace(/"/g,'&quot;') + '" onchange="D.individualAwards[\'' + cat + '\'][' + i + '].detail=this.value" placeholder="التفاصيل" style="margin-bottom:4px">' +
+          '<input type="text" value="' + (aw.img||'') + '" onchange="D.individualAwards[\'' + cat + '\'][' + i + '].img=this.value;renderAwardsAdmin()" placeholder="🖼️ رابط صورة الجائزة">' +
+        '</div>' +
+        '<button class="btn-red" onclick="D.individualAwards[\'' + cat + '\'].splice(' + i + ',1);renderAwardsAdmin()">🗑</button>' +
+        '</div>'
+      ).join('') +
+    '</div>';
+  }).join('');
+  const imgInput = document.getElementById('naw-img');
+  if(imgInput){
+    imgInput.oninput = function(){
+      const preview = document.getElementById('naw-img-preview');
+      const img = document.getElementById('naw-preview-el');
+      if(this.value.trim()){preview.style.display='block';img.src=this.value.trim();}
+      else{preview.style.display='none';}
+    };
+  }
+}
+function addAward(){
+  const cat = document.getElementById('naw-category').value;
+  const icon = document.getElementById('naw-icon').value.trim()||'🏅';
+  const year = document.getElementById('naw-year').value.trim();
+  const club = document.getElementById('naw-club').value.trim();
+  const detail = document.getElementById('naw-detail').value.trim();
+  const img = document.getElementById('naw-img').value.trim();
+  if(!year){toast('⚠️ أدخل السنة على الأقل');return;}
+  if(!D.individualAwards) D.individualAwards = {ballondor:[],goldenshoe:[],bestplayer:[],topscorer:[]};
+  if(!D.individualAwards[cat]) D.individualAwards[cat] = [];
+  D.individualAwards[cat].push({icon,year,club,detail,img});
+  ['naw-icon','naw-year','naw-club','naw-detail','naw-img'].forEach(id=>document.getElementById(id).value='');
+  const prev = document.getElementById('naw-img-preview');
+  if(prev) prev.style.display='none';
+  renderAwardsAdmin();toast('✅ تمت إضافة الجائزة');
+}
+function saveAwards(){
+  if(!D.individualAwards) D.individualAwards={ballondor:[],goldenshoe:[],bestplayer:[],topscorer:[]};
+  saveD(D);renderAll();toast('✅ تم حفظ الجوائز الفردية!');
+}
+
+// =============================================
+// CLUBS ADMIN
+// =============================================
+function renderClubAdmin(){
+  const clubKey = document.getElementById('club-select').value;
+  const clubs = D.clubsData || {};
+  const cl = clubs[clubKey] || {name:'',years:'',emoji:'',flagImg:'',matches:'',goals:'',assists:'',trophies:[]};
+  const panel = document.getElementById('clubAdminPanel');
+  if(!panel) return;
+  const trophiesHtml = (cl.trophies||[]).map((tr,i) =>
+    '<div class="item-row">' +
+    '<div style="font-size:22px;flex-shrink:0">' + (tr.icon||'🏆') + '</div>' +
+    '<div class="item-info">' +
+      '<div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-bottom:4px">' +
+        '<input type="text" value="' + (tr.icon||'') + '" onchange="D.clubsData[\'' + clubKey + '\'].trophies[' + i + '].icon=this.value" placeholder="إيموجي">' +
+        '<input type="text" value="' + (tr.year||'') + '" onchange="D.clubsData[\'' + clubKey + '\'].trophies[' + i + '].year=this.value" placeholder="السنة">' +
+      '</div>' +
+      '<input type="text" value="' + (tr.name||'').replace(/"/g,'&quot;') + '" onchange="D.clubsData[\'' + clubKey + '\'].trophies[' + i + '].name=this.value" placeholder="اسم البطولة" style="margin-bottom:4px">' +
+      '<input type="text" value="' + (tr.contrib||'').replace(/"/g,'&quot;') + '" onchange="D.clubsData[\'' + clubKey + '\'].trophies[' + i + '].contrib=this.value" placeholder="التفاصيل" style="margin-bottom:4px">' +
+      '<div style="display:grid;grid-template-columns:1fr auto;gap:6px;align-items:center">' +
+        '<input type="text" value="' + (tr.tag||'') + '" onchange="D.clubsData[\'' + clubKey + '\'].trophies[' + i + '].tag=this.value" placeholder="الوسم">' +
+        '<label style="display:flex;align-items:center;gap:4px;cursor:pointer;white-space:nowrap">' +
+          '<input type="checkbox" ' + (tr.tagGold?'checked':'') + ' onchange="D.clubsData[\'' + clubKey + '\'].trophies[' + i + '].tagGold=this.checked" style="width:14px;height:14px;accent-color:var(--gold)">' +
+          '<span style="font-size:10px;color:rgba(255,255,255,.45)">ذهبي</span>' +
+        '</label>' +
+      '</div>' +
+    '</div>' +
+    '<button class="btn-red" onclick="D.clubsData[\'' + clubKey + '\'].trophies.splice(' + i + ',1);renderClubAdmin()">🗑</button>' +
+    '</div>'
+  ).join('');
+  panel.innerHTML =
+    '<div style="margin-bottom:12px">' +
+      '<div style="font-size:11px;font-weight:700;color:var(--gold2);margin-bottom:8px;padding:6px 10px;background:rgba(255,215,0,.07);border-radius:7px">⚙️ معلومات النادي</div>' +
+      '<div class="two-col">' +
+        '<div><label>اسم النادي</label><input type="text" id="cl-name" value="' + (cl.name||'').replace(/"/g,'&quot;') + '" placeholder="اسم النادي"></div>' +
+        '<div><label>الإيموجي</label><input type="text" id="cl-emoji" value="' + (cl.emoji||'') + '" placeholder="🔴" maxlength="4"></div>' +
+      '</div>' +
+      '<label>الفترة الزمنية</label><input type="text" id="cl-years" value="' + (cl.years||'').replace(/"/g,'&quot;') + '" placeholder="2003 — 2009 • إنجلترا">' +
+      '<label>🖼️ رابط صورة شعار / علم النادي</label>' +
+      '<input type="text" id="cl-flagImg" value="' + (cl.flagImg||'') + '" placeholder="https://..." oninput="updateClubImgPreview()">' +
+      '<div id="cl-img-preview" style="margin-top:6px;' + (cl.flagImg?'':'display:none') + '">' +
+        '<img id="cl-preview-el" src="' + (cl.flagImg||'') + '" style="width:70px;height:70px;object-fit:contain;border-radius:8px;border:1px solid rgba(255,215,0,.2);background:rgba(255,255,255,.05)">' +
+      '</div>' +
+      '<div class="two-col" style="margin-top:6px">' +
+        '<div><label>عدد المباريات</label><input type="text" id="cl-matches" value="' + (cl.matches||'') + '" placeholder="292"></div>' +
+        '<div><label>الأهداف</label><input type="text" id="cl-goals" value="' + (cl.goals||'') + '" placeholder="118"></div>' +
+      '</div>' +
+      '<label>التمريرات الحاسمة</label><input type="text" id="cl-assists" value="' + (cl.assists||'') + '" placeholder="62">' +
+    '</div>' +
+    '<div>' +
+      '<div style="font-size:11px;font-weight:700;color:var(--gold2);margin-bottom:8px;padding:6px 10px;background:rgba(255,215,0,.07);border-radius:7px">🏆 البطولات مع هذا النادي</div>' +
+      '<div id="cl-trophies-list">' + trophiesHtml + '</div>' +
+      '<div style="margin-top:10px;border-top:1px solid rgba(255,255,255,.07);padding-top:10px">' +
+        '<div style="font-size:10px;font-weight:700;color:var(--gold2);margin-bottom:6px">➕ إضافة بطولة</div>' +
+        '<div class="two-col"><div><label>الإيموجي</label><input type="text" id="ntr-icon" placeholder="🏆" maxlength="4"></div>' +
+        '<div><label>السنة</label><input type="text" id="ntr-year" placeholder="2014"></div></div>' +
+        '<label>اسم البطولة</label><input type="text" id="ntr-name" placeholder="دوري أبطال أوروبا">' +
+        '<label>التفاصيل</label><input type="text" id="ntr-contrib" placeholder="17 هدفاً في البطولة">' +
+        '<div class="two-col">' +
+          '<div><label>الوسم</label><input type="text" id="ntr-tag" placeholder="UCL"></div>' +
+          '<div><label style="display:flex;align-items:center;gap:6px;cursor:pointer;margin-top:22px"><input type="checkbox" id="ntr-gold" style="width:14px;height:14px;accent-color:var(--gold)"><span>وسم ذهبي</span></label></div>' +
+        '</div>' +
+        '<button class="btn-gold" style="margin-top:8px" onclick="addTrophy()">➕ إضافة البطولة</button>' +
+      '</div>' +
+    '</div>';
+}
+function updateClubImgPreview(){
+  const val = document.getElementById('cl-flagImg').value.trim();
+  const preview = document.getElementById('cl-img-preview');
+  const img = document.getElementById('cl-preview-el');
+  if(val){preview.style.display='block';img.src=val;}
+  else{preview.style.display='none';}
+}
+function addTrophy(){
+  const clubKey = document.getElementById('club-select').value;
+  const icon = document.getElementById('ntr-icon').value.trim()||'🏆';
+  const year = document.getElementById('ntr-year').value.trim();
+  const name = document.getElementById('ntr-name').value.trim();
+  const contrib = document.getElementById('ntr-contrib').value.trim();
+  const tag = document.getElementById('ntr-tag').value.trim();
+  const tagGold = document.getElementById('ntr-gold').checked;
+  if(!name){toast('⚠️ أدخل اسم البطولة');return;}
+  if(!D.clubsData) D.clubsData={};
+  if(!D.clubsData[clubKey]) D.clubsData[clubKey]={trophies:[]};
+  if(!D.clubsData[clubKey].trophies) D.clubsData[clubKey].trophies=[];
+  D.clubsData[clubKey].trophies.push({icon,year,name,contrib,tag,tagGold});
+  ['ntr-icon','ntr-year','ntr-name','ntr-contrib','ntr-tag'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('ntr-gold').checked=false;
+  renderClubAdmin();toast('✅ تمت إضافة البطولة');
+}
+function saveClubInfoFields(){
+  const clubKey = document.getElementById('club-select').value;
+  if(!D.clubsData) D.clubsData={};
+  if(!D.clubsData[clubKey]) D.clubsData[clubKey]={trophies:[]};
+  const get=id=>{const el=document.getElementById(id);return el?el.value:'';};
+  D.clubsData[clubKey].name = get('cl-name');
+  D.clubsData[clubKey].emoji = get('cl-emoji');
+  D.clubsData[clubKey].years = get('cl-years');
+  D.clubsData[clubKey].flagImg = get('cl-flagImg');
+  D.clubsData[clubKey].matches = get('cl-matches');
+  D.clubsData[clubKey].goals = get('cl-goals');
+  D.clubsData[clubKey].assists = get('cl-assists');
+}
+function saveClubs(){
+  saveClubInfoFields();
+  saveD(D);renderAll();toast('✅ تم حفظ بيانات الأندية!');
 }
 function toast(msg){
   const t=document.getElementById('toast');
