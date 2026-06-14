@@ -80,7 +80,7 @@ section{padding:96px 20px;position:relative;z-index:2}
 .bio-section{background:linear-gradient(160deg,var(--dark) 0%,var(--black) 100%)}
 .bio-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:32px}
 .bio-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,215,0,.1);border-radius:16px;padding:22px;transition:.3s}
-.bio-card:hover{border-color:rgba(255,215,0,.25);transform:translateY(-3px);box-shadow:0 12px 36px rgba(12, 5, 5, 0.5)}
+.bio-card:hover{border-color:rgba(255,215,0,.25);transform:translateY(-3px);box-shadow:0 12px 36px rgba(0,0,0,.5)}
 .bio-card-icon{font-size:28px;margin-bottom:10px}
 .bio-card-title{font-size:10px;letter-spacing:2px;color:var(--gold2);text-transform:uppercase;font-weight:700;margin-bottom:8px}
 .bio-card-val{font-size:16px;font-weight:700;color:var(--white);line-height:1.4}
@@ -1250,6 +1250,7 @@ function initFirebase(){
       // First time — push defaults to Firebase
       DATA_REF.set(JSON.parse(JSON.stringify(DEF)));
     }
+    normalizeSocials();
     renderAll();
     setTimeout(animCounters, 400);
     document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
@@ -1257,16 +1258,51 @@ function initFirebase(){
     // Firebase failed — use localStorage fallback
     console.warn('Firebase error, using localStorage:', err);
     try{const r=localStorage.getItem(STORE);if(r)D={...DEF,...JSON.parse(r)};}catch(e){}
+    normalizeSocials();
     renderAll();
     setTimeout(animCounters,400);
     document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
   });
 }
 
+// Ensure D.socials is always a proper array (handles legacy object format from old saves,
+// and Firebase's sparse-array-as-object quirk)
+function normalizeSocials(){
+  if(!D.socials){
+    D.socials = JSON.parse(JSON.stringify(DEF.socials));
+    return;
+  }
+  if(!Array.isArray(D.socials)){
+    const keys = Object.keys(D.socials);
+    const looksLikeArray = keys.length>0 && keys.every(k=>/^\d+$/.test(k));
+    if(looksLikeArray){
+      // Firebase stored a sparse array as an object with numeric keys
+      D.socials = keys.sort((a,b)=>a-b).map(k=>D.socials[k]).filter(Boolean);
+      return;
+    }
+    // Legacy format: {instagram:'url', facebook:'url', ...}
+    const legacyMap = {
+      instagram:{name:'Instagram',icon:'📸'}, facebook:{name:'Facebook',icon:'📘'},
+      youtube:{name:'YouTube',icon:'▶️'}, twitter:{name:'X (Twitter)',icon:'✖'},
+      tiktok:{name:'TikTok',icon:'🎵'}, website:{name:'الموقع الرسمي',icon:'🌐'},
+      shop:{name:'CR7 Shop',icon:'🛒'}, spotify:{name:'Spotify',icon:'🎧'}
+    };
+    const converted = [];
+    keys.forEach(k=>{
+      const url = D.socials[k];
+      if(url && legacyMap[k]){
+        converted.push({name:legacyMap[k].name, icon:legacyMap[k].icon, url, img:''});
+      }
+    });
+    D.socials = converted.length ? converted : JSON.parse(JSON.stringify(DEF.socials));
+  }
+}
+
 // =============================================
 // RENDER
 // =============================================
 function renderAll(){
+  normalizeSocials();
   // Nav logo
   document.getElementById('navLogo').textContent=D.heroCr7||'CR7';
   // Hero
@@ -1833,7 +1869,7 @@ function saveClubs(){
 // SOCIALS ADMIN
 // =============================================
 function renderSocialsAdmin(){
-  if(!D.socials) D.socials=[];
+  normalizeSocials();
   const list = D.socials;
   const el = document.getElementById('socialsAdmin');
   if(!el) return;
@@ -1871,7 +1907,7 @@ function addSocial(){
   const url = document.getElementById('ns-url').value.trim();
   const img = document.getElementById('ns-img').value.trim();
   if(!name || !url){toast('⚠️ أدخل اسم الحساب والرابط');return;}
-  if(!D.socials) D.socials=[];
+  normalizeSocials();
   D.socials.push({name,icon,url,img});
   ['ns-name','ns-icon','ns-url','ns-img'].forEach(id=>document.getElementById(id).value='');
   const prev=document.getElementById('ns-img-preview');
@@ -1879,7 +1915,7 @@ function addSocial(){
   renderSocialsAdmin();toast('✅ تمت إضافة الحساب');
 }
 function saveSocials(){
-  if(!D.socials) D.socials=[];
+  normalizeSocials();
   saveD(D);renderAll();toast('✅ تم حفظ الحسابات!');
 }
 function toast(msg){
