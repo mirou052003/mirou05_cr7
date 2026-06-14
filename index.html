@@ -122,7 +122,27 @@ section{padding:96px 20px;position:relative;z-index:2}
 .trophy-tag{display:inline-block;background:rgba(200,16,46,.15);border:1px solid rgba(200,16,46,.2);color:#FCA5A5;border-radius:50px;padding:2px 10px;font-size:9px;font-weight:700;letter-spacing:1px;margin-top:6px}
 .trophy-tag.gold{background:rgba(255,215,0,.12);border-color:rgba(255,215,0,.25);color:var(--gold)}
 
-/* ====== INDIVIDUAL AWARDS ====== */
+/* ====== LANG SWITCHER ====== */
+.lang-switcher{display:flex;gap:4px;align-items:center;margin-right:4px}
+.lang-btn{padding:4px 10px;border-radius:20px;border:1px solid rgba(255,255,255,.15);background:transparent;color:rgba(255,255,255,.45);font-size:11px;font-weight:700;cursor:pointer;transition:.2s;letter-spacing:.5px;font-family:'Cairo',sans-serif}
+.lang-btn:hover{color:var(--white);border-color:rgba(255,215,0,.4)}
+.lang-btn.active{background:linear-gradient(135deg,rgba(255,215,0,.18),rgba(201,168,76,.1));border-color:var(--gold2);color:var(--gold)}
+[dir="ltr"] #mainNav{flex-direction:row-reverse}
+[dir="ltr"] .nav-links{flex-direction:row}
+[dir="ltr"] .bio-grid,[dir="ltr"] .clubs-nav,[dir="ltr"] .adm-tabs{direction:ltr}
+[dir="ltr"] .sec-eye,[dir="ltr"] .sec-title,[dir="ltr"] .bio-desc{text-align:left}
+[dir="ltr"] .hero-content{text-align:left}
+[dir="ltr"] .hero-vitals,[dir="ltr"] .hero-stats,[dir="ltr"] .hero-btns{justify-content:flex-start}
+[dir="ltr"] .lang-switcher{margin-right:0;margin-left:4px}
+/* ====== ADMIN SOCIALS ====== */
+.soc-item{display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap}
+.soc-icon{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.soc-info{min-width:130px;flex-shrink:0}
+.soc-name{font-size:12px;font-weight:700;color:var(--white)}
+.soc-handle{font-size:10px;color:rgba(255,255,255,.35)}
+/* ====== FOOTER SOCIALS ====== */
+.ft-social-link{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);font-size:18px;text-decoration:none;transition:.2s;cursor:pointer}
+.ft-social-link:hover{background:rgba(255,215,0,.15);border-color:rgba(255,215,0,.35);transform:translateY(-3px)}
 .awards-section{background:var(--dark)}
 .awards-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px}
 .award-tab{padding:10px 20px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:50px;cursor:pointer;font-size:12px;font-weight:700;font-family:'Cairo',sans-serif;color:rgba(255,255,255,.55);transition:.2s}
@@ -257,12 +277,17 @@ input:focus,textarea:focus{outline:none;border-color:var(--gold2);background:rgb
 <nav id="mainNav">
   <div class="nav-logo" id="navLogo">CR7</div>
   <div class="nav-links">
-    <a class="nav-link" href="#bio">البيانات</a>
-    <a class="nav-link" href="#clubs">الأندية</a>
-    <a class="nav-link" href="#awards">الجوائز</a>
-    <a class="nav-link" href="#achievements">الإنجازات</a>
-    <a class="nav-link" href="#timeline">المسيرة</a>
-    <a class="nav-link" href="#gallery">الصور</a>
+    <a class="nav-link" href="#bio" data-i18n="nav_bio">البيانات</a>
+    <a class="nav-link" href="#clubs" data-i18n="nav_clubs">الأندية</a>
+    <a class="nav-link" href="#awards" data-i18n="nav_awards">الجوائز</a>
+    <a class="nav-link" href="#achievements" data-i18n="nav_ach">الإنجازات</a>
+    <a class="nav-link" href="#timeline" data-i18n="nav_timeline">المسيرة</a>
+    <a class="nav-link" href="#gallery" data-i18n="nav_gallery">الصور</a>
+  </div>
+  <div class="lang-switcher" id="langSwitcher">
+    <button class="lang-btn active" onclick="setLang('ar')">AR</button>
+    <button class="lang-btn" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" onclick="setLang('fr')">FR</button>
   </div>
 </nav>
 
@@ -285,14 +310,14 @@ input:focus,textarea:focus{outline:none;border-color:var(--gold2);background:rgb
       <div class="vital"><div class="vital-val">البرتغال 🇵🇹</div><div class="vital-lbl">الجنسية</div></div>
     </div>
     <div class="hero-stats" id="heroStats">
-      <div class="hstat"><div class="hstat-num" data-target="900">0</div><div class="hstat-lbl">هدف محترف</div></div>
-      <div class="hstat"><div class="hstat-num" data-target="5">0</div><div class="hstat-lbl">كرة ذهبية</div></div>
-      <div class="hstat"><div class="hstat-num" data-target="5">0</div><div class="hstat-lbl">دوري أبطال</div></div>
-      <div class="hstat"><div class="hstat-num" data-target="130">0</div><div class="hstat-lbl">هدف دولي</div></div>
+      <div class="hstat"><div class="hstat-num" data-target="900">0</div><div class="hstat-lbl" data-i18n="stat_goals">هدف محترف</div></div>
+      <div class="hstat"><div class="hstat-num" data-target="5">0</div><div class="hstat-lbl" data-i18n="stat_ballon">كرة ذهبية</div></div>
+      <div class="hstat"><div class="hstat-num" data-target="5">0</div><div class="hstat-lbl" data-i18n="stat_ucl">دوري أبطال</div></div>
+      <div class="hstat"><div class="hstat-num" data-target="130">0</div><div class="hstat-lbl" data-i18n="stat_intl">هدف دولي</div></div>
     </div>
     <div class="hero-btns">
-      <a class="btn-main" href="#clubs">🏆 بطولاته مع الأندية</a>
-      <a class="btn-outline" href="#awards">🌟 جوائزه الفردية</a>
+      <a class="btn-main" href="#clubs" data-i18n="hero_btn1">🏆 بطولاته مع الأندية</a>
+      <a class="btn-outline" href="#awards" data-i18n="hero_btn2">🌟 جوائزه الفردية</a>
     </div>
   </div>
   <div class="hero-scroll"><div class="scroll-ln"></div><span>SCROLL</span></div>
@@ -307,8 +332,8 @@ input:focus,textarea:focus{outline:none;border-color:var(--gold2);background:rgb
 <section class="bio-section" id="bio">
   <div class="sec-wrap">
     <div class="reveal">
-      <div class="sec-eye">لمحة عامة</div>
-      <div class="sec-title">من هو <span class="acc">كريستيانو</span>؟</div>
+      <div class="sec-eye" data-i18n="bio_eye">لمحة عامة</div>
+      <div class="sec-title" data-i18n="bio_title">من هو <span class="acc">كريستيانو</span>؟</div>
       <div class="sec-div"></div>
     </div>
     <div class="bio-grid reveal" id="bioGrid">
@@ -329,8 +354,8 @@ input:focus,textarea:focus{outline:none;border-color:var(--gold2);background:rgb
 <section class="clubs-section" id="clubs">
   <div class="sec-wrap">
     <div class="reveal">
-      <div class="sec-eye">بطولاته مع الأندية</div>
-      <div class="sec-title">مسيرة <span class="acc">الأبطال</span></div>
+      <div class="sec-eye" data-i18n="clubs_eye">بطولاته مع الأندية</div>
+      <div class="sec-title" data-i18n="clubs_title">مسيرة <span class="acc">الأبطال</span></div>
       <div class="sec-div"></div>
     </div>
     <div class="clubs-nav reveal" id="clubsNav">
@@ -707,8 +732,8 @@ input:focus,textarea:focus{outline:none;border-color:var(--gold2);background:rgb
 <section class="awards-section" id="awards">
   <div class="sec-wrap">
     <div class="reveal">
-      <div class="sec-eye">الجوائز الفردية</div>
-      <div class="sec-title">التميّز <span class="acc">الشخصي</span></div>
+      <div class="sec-eye" data-i18n="awards_eye">الجوائز الفردية</div>
+      <div class="sec-title" data-i18n="awards_title">التميّز <span class="acc">الشخصي</span></div>
       <div class="sec-div"></div>
     </div>
     <div class="awards-tabs reveal">
@@ -767,8 +792,8 @@ input:focus,textarea:focus{outline:none;border-color:var(--gold2);background:rgb
 <section class="ach-section" id="achievements">
   <div class="sec-wrap">
     <div class="reveal">
-      <div class="sec-eye">أرقام الأسطورة</div>
-      <div class="sec-title">إنجازات <span class="acc">لا تُنسى</span></div>
+      <div class="sec-eye" data-i18n="ach_eye">أرقام الأسطورة</div>
+      <div class="sec-title" data-i18n="ach_title">إنجازات <span class="acc">لا تُنسى</span></div>
       <div class="sec-div"></div>
     </div>
     <div class="ach-grid" id="achGrid"></div>
@@ -779,8 +804,8 @@ input:focus,textarea:focus{outline:none;border-color:var(--gold2);background:rgb
 <section class="timeline-section" id="timeline">
   <div class="sec-wrap">
     <div class="reveal">
-      <div class="sec-eye">المسيرة الكاملة</div>
-      <div class="sec-title">من <span class="acc">مدييرا</span> إلى الخلود</div>
+      <div class="sec-eye" data-i18n="tl_eye">المسيرة الكاملة</div>
+      <div class="sec-title" data-i18n="tl_title">من <span class="acc">مدييرا</span> إلى الخلود</div>
       <div class="sec-div"></div>
     </div>
     <div class="tl-wrap">
@@ -794,8 +819,8 @@ input:focus,textarea:focus{outline:none;border-color:var(--gold2);background:rgb
 <section class="gallery-section" id="gallery">
   <div class="sec-wrap">
     <div class="reveal">
-      <div class="sec-eye">معرض الصور</div>
-      <div class="sec-title">لحظات <span class="acc">خالدة</span></div>
+      <div class="sec-eye" data-i18n="gal_eye">معرض الصور</div>
+      <div class="sec-title" data-i18n="gal_title">لحظات <span class="acc">خالدة</span></div>
       <div class="sec-div"></div>
     </div>
     <div class="gal-grid reveal" id="galGrid">
@@ -813,7 +838,7 @@ input:focus,textarea:focus{outline:none;border-color:var(--gold2);background:rgb
   <div class="reveal">
     <span class="q-mark">"</span>
     <div class="q-text" id="quoteText">أنا لا أساعد الفرق على الفوز —<br>أنا أُعلّم الفرق كيف تفوز</div>
-    <div class="q-attrib">— كريستيانو رونالدو</div>
+    <div class="q-attrib" data-i18n="quote_attrib">— كريستيانو رونالدو</div>
   </div>
 </div>
 
@@ -821,9 +846,11 @@ input:focus,textarea:focus{outline:none;border-color:var(--gold2);background:rgb
 <footer>
   <div class="ft-logo">CR7</div>
   <div class="ft-sub">Cristiano Ronaldo dos Santos Aveiro • 1985 — ∞</div>
-  <div class="ft-socials">
-    <span class="ft-social">📸</span><span class="ft-social">🐦</span>
-    <span class="ft-social">📘</span><span class="ft-social">📺</span>
+  <div class="ft-socials" id="ftSocials">
+    <a class="ft-social-link" href="https://www.instagram.com/cristiano" target="_blank" rel="noopener" title="Instagram">📸</a>
+    <a class="ft-social-link" href="https://x.com/Cristiano" target="_blank" rel="noopener" title="X">✖</a>
+    <a class="ft-social-link" href="https://www.facebook.com/Cristiano" target="_blank" rel="noopener" title="Facebook">📘</a>
+    <a class="ft-social-link" href="https://www.youtube.com/@Cristiano" target="_blank" rel="noopener" title="YouTube">▶️</a>
   </div>
   <div class="ft-copy">SIUUU 🎉 — The GOAT of Football</div>
 </footer>
@@ -859,6 +886,7 @@ input:focus,textarea:focus{outline:none;border-color:var(--gold2);background:rgb
       <button class="adm-tab" onclick="admTab('atab-quote',this)">💬 اقتباس</button>
       <button class="adm-tab" onclick="admTab('atab-awards',this)">🌟 جوائز فردية</button>
       <button class="adm-tab" onclick="admTab('atab-clubs',this)">🏆 أندية</button>
+      <button class="adm-tab" onclick="admTab('atab-socials',this)">📱 حسابات</button>
     </div>
 
     <div class="adm-tc active" id="atab-hero">
@@ -1010,6 +1038,48 @@ input:focus,textarea:focus{outline:none;border-color:var(--gold2);background:rgb
       </div>
     </div>
 
+    <!-- ===== SOCIALS ADMIN ===== -->
+    <div class="adm-tc" id="atab-socials">
+      <div class="adm-card">
+        <div class="adm-card-title">📱 حسابات كريستيانو على التواصل الاجتماعي</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.35);margin-bottom:14px">أدخل الروابط الرسمية — ستظهر في الفوتر أسفل الصفحة كأزرار قابلة للنقر</div>
+
+        <div class="soc-item"><span class="soc-icon" style="background:linear-gradient(135deg,#E1306C,#C13584,#833AB4)">📸</span>
+          <div class="soc-info"><div class="soc-name">Instagram</div><div class="soc-handle">الأكثر متابعة في العالم • 600M+</div></div>
+          <input type="text" id="soc-instagram" placeholder="https://www.instagram.com/cristiano" style="flex:1;min-width:0"></div>
+
+        <div class="soc-item"><span class="soc-icon" style="background:#1877F2">📘</span>
+          <div class="soc-info"><div class="soc-name">Facebook</div><div class="soc-handle">170M+ متابع</div></div>
+          <input type="text" id="soc-facebook" placeholder="https://www.facebook.com/Cristiano" style="flex:1;min-width:0"></div>
+
+        <div class="soc-item"><span class="soc-icon" style="background:#FF0000">▶️</span>
+          <div class="soc-info"><div class="soc-name">YouTube</div><div class="soc-handle">قناة CR7 الرسمية</div></div>
+          <input type="text" id="soc-youtube" placeholder="https://www.youtube.com/@Cristiano" style="flex:1;min-width:0"></div>
+
+        <div class="soc-item"><span class="soc-icon" style="background:#000;border:1px solid rgba(255,255,255,.15)">✖</span>
+          <div class="soc-info"><div class="soc-name">X (Twitter)</div><div class="soc-handle">@Cristiano • 112M+</div></div>
+          <input type="text" id="soc-twitter" placeholder="https://x.com/Cristiano" style="flex:1;min-width:0"></div>
+
+        <div class="soc-item"><span class="soc-icon" style="background:linear-gradient(135deg,#010101,#69C9D0)">🎵</span>
+          <div class="soc-info"><div class="soc-name">TikTok</div><div class="soc-handle">@cristiano</div></div>
+          <input type="text" id="soc-tiktok" placeholder="https://www.tiktok.com/@cristiano" style="flex:1;min-width:0"></div>
+
+        <div class="soc-item"><span class="soc-icon" style="background:linear-gradient(135deg,#C8102E,#8B0000)">🌐</span>
+          <div class="soc-info"><div class="soc-name">الموقع الرسمي</div><div class="soc-handle">cr7.com</div></div>
+          <input type="text" id="soc-website" placeholder="https://www.cr7.com" style="flex:1;min-width:0"></div>
+
+        <div class="soc-item"><span class="soc-icon" style="background:linear-gradient(135deg,#b8860b,#ffd700)">🛒</span>
+          <div class="soc-info"><div class="soc-name">CR7 Shop</div><div class="soc-handle">متجر العطور والملابس الرسمي</div></div>
+          <input type="text" id="soc-shop" placeholder="https://www.cr7.com/shop" style="flex:1;min-width:0"></div>
+
+        <div class="soc-item"><span class="soc-icon" style="background:#1DB954">🎧</span>
+          <div class="soc-info"><div class="soc-name">Spotify</div><div class="soc-handle">Playlist / Podcast</div></div>
+          <input type="text" id="soc-spotify" placeholder="https://open.spotify.com/..." style="flex:1;min-width:0"></div>
+
+        <button class="btn-gold" style="margin-top:16px" onclick="saveSocials()">💾 حفظ الحسابات</button>
+      </div>
+    </div>
+
   </div>
 </div>
 
@@ -1083,6 +1153,16 @@ const DEF = {
     {url:'https://images.unsplash.com/photo-1535571584817-6965a4e1fcac?w=600&q=80',label:'الجماهير 🙌',big:false},
   ],
   quote:'أنا لا أساعد الفرق على الفوز —\nأنا أُعلّم الفرق كيف تفوز',
+  socials:{
+    instagram:'https://www.instagram.com/cristiano',
+    facebook:'https://www.facebook.com/Cristiano',
+    youtube:'https://www.youtube.com/@Cristiano',
+    twitter:'https://x.com/Cristiano',
+    tiktok:'https://www.tiktok.com/@cristiano',
+    website:'https://www.cr7.com',
+    shop:'',
+    spotify:'',
+  },
   individualAwards:{
     ballondor:[
       {icon:'🌟',year:'2008',club:'مانشستر يونايتد',detail:'42 هدف في الموسم',img:''},
@@ -1380,6 +1460,26 @@ function renderAll(){
 
   // Re-observe
   setTimeout(()=>document.querySelectorAll('.reveal').forEach(el=>obs.observe(el)),60);
+
+  // Footer socials
+  const s = D.socials || {};
+  const socMap = [
+    {key:'instagram',icon:'📸',label:'Instagram'},
+    {key:'facebook',icon:'📘',label:'Facebook'},
+    {key:'youtube',icon:'▶️',label:'YouTube'},
+    {key:'twitter',icon:'✖',label:'X'},
+    {key:'tiktok',icon:'🎵',label:'TikTok'},
+    {key:'website',icon:'🌐',label:'الموقع'},
+    {key:'shop',icon:'🛒',label:'Shop'},
+    {key:'spotify',icon:'🎧',label:'Spotify'},
+  ];
+  const ftSoc = document.getElementById('ftSocials');
+  if(ftSoc){
+    ftSoc.innerHTML = socMap
+      .filter(m => s[m.key])
+      .map(m => `<a class="ft-social-link" href="${s[m.key]}" target="_blank" rel="noopener" title="${m.label}">${m.icon}</a>`)
+      .join('');
+  }
 }
 
 // =============================================
@@ -1461,6 +1561,7 @@ function admTab(id,btn){
   document.getElementById(id).classList.add('active');btn.classList.add('active');
   if(id==='atab-awards') renderAwardsAdmin();
   if(id==='atab-clubs') renderClubAdmin();
+  if(id==='atab-socials') loadSocialsAdmin();
 }
 
 // =============================================
@@ -1749,6 +1850,31 @@ function saveClubs(){
   saveClubInfoFields();
   saveD(D);renderAll();toast('✅ تم حفظ بيانات الأندية!');
 }
+
+// =============================================
+// SOCIALS ADMIN
+// =============================================
+function loadSocialsAdmin(){
+  const s = D.socials || {};
+  const map = {instagram:'soc-instagram',facebook:'soc-facebook',youtube:'soc-youtube',
+                twitter:'soc-twitter',tiktok:'soc-tiktok',website:'soc-website',
+                shop:'soc-shop',spotify:'soc-spotify'};
+  Object.keys(map).forEach(k=>{
+    const el=document.getElementById(map[k]);
+    if(el) el.value = s[k]||'';
+  });
+}
+function saveSocials(){
+  if(!D.socials) D.socials={};
+  const map = {instagram:'soc-instagram',facebook:'soc-facebook',youtube:'soc-youtube',
+                twitter:'soc-twitter',tiktok:'soc-tiktok',website:'soc-website',
+                shop:'soc-shop',spotify:'soc-spotify'};
+  Object.keys(map).forEach(k=>{
+    const el=document.getElementById(map[k]);
+    if(el) D.socials[k] = el.value.trim();
+  });
+  saveD(D);renderAll();toast('✅ تم حفظ الحسابات!');
+}
 function toast(msg){
   const t=document.getElementById('toast');
   t.textContent=msg;t.style.display='block';
@@ -1788,6 +1914,126 @@ window.addEventListener('scroll',()=>{
     }
   });
 },{passive:true});
+
+// =============================================
+// 🌍 TRANSLATIONS — AR / EN / FR
+// =============================================
+const LANGS = {
+  ar:{
+    dir:'rtl', fontClass:'font-ar',
+    nav_bio:'البيانات', nav_clubs:'الأندية', nav_awards:'الجوائز',
+    nav_ach:'الإنجازات', nav_timeline:'المسيرة', nav_gallery:'الصور',
+    hero_eyebrow:'الأسطورة الحية — The GOAT',
+    hero_btn1:'🏆 بطولاته مع الأندية', hero_btn2:'🌟 جوائزه الفردية',
+    stat_goals:'هدف محترف', stat_ballon:'كرة ذهبية',
+    stat_ucl:'دوري أبطال', stat_intl:'هدف دولي',
+    bio_eye:'لمحة عامة', bio_title:'من هو <span class="acc">كريستيانو</span>؟',
+    clubs_eye:'بطولاته مع الأندية', clubs_title:'مسيرة <span class="acc">الأبطال</span>',
+    awards_eye:'الجوائز الفردية', awards_title:'التميّز <span class="acc">الشخصي</span>',
+    ach_eye:'أرقام الأسطورة', ach_title:'إنجازات <span class="acc">لا تُنسى</span>',
+    tl_eye:'المسيرة الكاملة', tl_title:'من <span class="acc">مدييرا</span> إلى الخلود',
+    gal_eye:'معرض الصور', gal_title:'لحظات <span class="acc">خالدة</span>',
+    quote_attrib:'— كريستيانو رونالدو',
+    ft_copy:'SIUUU 🎉 — عبقري كرة القدم',
+    award_tab1:'🌟 الكرة الذهبية', award_tab2:'👟 الحذاء الذهبي',
+    award_tab3:'🎖️ أفضل لاعب FIFA', award_tab4:'⚽ هداف التاريخ',
+    stat_lbl_match:'مباراة', stat_lbl_goal:'هدف', stat_lbl_assist:'تمريرة',
+  },
+  en:{
+    dir:'ltr', fontClass:'font-en',
+    nav_bio:'Bio', nav_clubs:'Clubs', nav_awards:'Awards',
+    nav_ach:'Records', nav_timeline:'Career', nav_gallery:'Gallery',
+    hero_eyebrow:'The Living Legend — The GOAT',
+    hero_btn1:'🏆 Club Trophies', hero_btn2:'🌟 Individual Awards',
+    stat_goals:'Pro Goals', stat_ballon:'Ballon d\'Or',
+    stat_ucl:'UCL Titles', stat_intl:'Int\'l Goals',
+    bio_eye:'Overview', bio_title:'Who is <span class="acc">Cristiano</span>?',
+    clubs_eye:'Club Career', clubs_title:'A Career of <span class="acc">Champions</span>',
+    awards_eye:'Individual Awards', awards_title:'Personal <span class="acc">Excellence</span>',
+    ach_eye:'Legend by Numbers', ach_title:'Records <span class="acc">Never Broken</span>',
+    tl_eye:'Full Career', tl_title:'From <span class="acc">Madeira</span> to Immortality',
+    gal_eye:'Photo Gallery', gal_title:'Iconic <span class="acc">Moments</span>',
+    quote_attrib:'— Cristiano Ronaldo',
+    ft_copy:'SIUUU 🎉 — The GOAT of Football',
+    award_tab1:'🌟 Ballon d\'Or', award_tab2:'👟 Golden Boot',
+    award_tab3:'🎖️ FIFA Best Player', award_tab4:'⚽ All-Time Top Scorer',
+    stat_lbl_match:'Matches', stat_lbl_goal:'Goals', stat_lbl_assist:'Assists',
+  },
+  fr:{
+    dir:'ltr', fontClass:'font-fr',
+    nav_bio:'Bio', nav_clubs:'Clubs', nav_awards:'Trophées',
+    nav_ach:'Records', nav_timeline:'Carrière', nav_gallery:'Galerie',
+    hero_eyebrow:'La Légende Vivante — The GOAT',
+    hero_btn1:'🏆 Palmarès en Club', hero_btn2:'🌟 Récompenses Individuelles',
+    stat_goals:'Buts Pro', stat_ballon:'Ballon d\'Or',
+    stat_ucl:'Ligues des Champions', stat_intl:'Buts Internationaux',
+    bio_eye:'Aperçu Général', bio_title:'Qui est <span class="acc">Cristiano</span> ?',
+    clubs_eye:'Carrière en Club', clubs_title:'Une Carrière de <span class="acc">Champions</span>',
+    awards_eye:'Récompenses Individuelles', awards_title:'Excellence <span class="acc">Personnelle</span>',
+    ach_eye:'La Légende en Chiffres', ach_title:'Records <span class="acc">Inoubliables</span>',
+    tl_eye:'Carrière Complète', tl_title:'De <span class="acc">Madère</span> à l\'Immortalité',
+    gal_eye:'Galerie Photos', gal_title:'Moments <span class="acc">Inoubliables</span>',
+    quote_attrib:'— Cristiano Ronaldo',
+    ft_copy:'SIUUU 🎉 — Le GOAT du Football',
+    award_tab1:'🌟 Ballon d\'Or', award_tab2:'👟 Soulier d\'Or',
+    award_tab3:'🎖️ Meilleur Joueur FIFA', award_tab4:'⚽ Meilleur Buteur Historique',
+    stat_lbl_match:'Matchs', stat_lbl_goal:'Buts', stat_lbl_assist:'Passes',
+  }
+};
+
+let currentLang = localStorage.getItem('cr7_lang') || 'ar';
+
+function setLang(lang){
+  currentLang = lang;
+  localStorage.setItem('cr7_lang', lang);
+  applyLang();
+}
+
+function applyLang(){
+  const t = LANGS[currentLang];
+  if(!t) return;
+
+  // Direction
+  document.documentElement.dir = t.dir;
+  document.documentElement.lang = currentLang;
+
+  // Active button
+  document.querySelectorAll('.lang-btn').forEach(b=>{
+    b.classList.toggle('active', b.textContent.trim().toLowerCase() === currentLang);
+  });
+
+  // All data-i18n elements
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const key = el.getAttribute('data-i18n');
+    if(t[key] !== undefined) el.innerHTML = t[key];
+  });
+
+  // Award tabs
+  const awardTabs = document.querySelectorAll('.award-tab');
+  const awardTabKeys = ['award_tab1','award_tab2','award_tab3','award_tab4'];
+  awardTabs.forEach((btn,i)=>{ if(t[awardTabKeys[i]]) btn.innerHTML = t[awardTabKeys[i]]; });
+
+  // ch-stat-lbl (matches/goals/assists in club panels) — translate by content detection
+  document.querySelectorAll('.ch-stat-lbl').forEach(el=>{
+    const txt = el.textContent.trim();
+    if(['مباراة','Matches','Matchs'].includes(txt)) el.textContent = t.stat_lbl_match;
+    else if(['هدف','Goals','Buts'].includes(txt)) el.textContent = t.stat_lbl_goal;
+    else if(['تمريرة','Assists','Passes'].includes(txt)) el.textContent = t.stat_lbl_assist;
+  });
+
+  // Footer copy
+  const ftCopy = document.querySelector('.ft-copy');
+  if(ftCopy) ftCopy.textContent = t.ft_copy;
+
+  // RTL/LTR adjustments for nav
+  const nav = document.getElementById('mainNav');
+  if(nav){
+    nav.style.flexDirection = t.dir === 'rtl' ? 'row' : 'row-reverse';
+  }
+}
+
+// Init lang on load
+document.addEventListener('DOMContentLoaded', ()=>{ applyLang(); });
 </script>
 </body>
 </html>
